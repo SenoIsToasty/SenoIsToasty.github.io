@@ -1,0 +1,86 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Processing Demo</title>
+<script type="text/javascript" src="./js/processing.js"></script>
+</head>
+
+<body>
+<script type="text/processing">
+
+///Processing code goes in between the script tags
+PImage back; //Creates a variable for an image
+PImage face;
+
+int x = 0; int count = 0; int Vy = 0; int My = 0;
+
+int gamestate = 0;
+
+void setup(){
+  size(1200, 600);
+  face = loadImage("./img/god head.png");
+  back = loadImage("./img/god.png"); //load and saves image to variable
+}
+
+void draw(){
+  if (gamestate == 0){
+  //background control
+    image(back, 0 + x, 0);
+    image(back, 1200 + x, 0);
+    if (x == - 1200){
+      x = 0;
+    }
+    image(face, 84, My);
+    x--;
+    Vy++;
+    My = My + Vy;
+    if (My > 600){
+      gamestate = 2;
+    }
+  }
+  if (gamestate == 2){
+    textSize(28); fill (255,0,0);
+    text ("01011001", 5, 300);
+    fill (255,128,0);
+    text ("01101111", 155, 300);
+    fill (255,255,0);
+    text ("01110101", 305, 300);
+    fill (0,255,0);
+    text ("00100000", 455, 300);
+    fill (0,255,255);
+    text ("01110011", 605, 300);
+    fill (0,0,255);
+    text ("01110101", 755, 300);
+    fill (128,0,255);
+    text ("01100011", 905, 300);
+    fill (255,0,170);
+    text ("01101011", 1055, 300);
+    fill(0);
+    rect (500, 345, 200, 50, 10);
+    textSize(20); fill(255,0,0);
+    text ("You've always been", 505, 365);
+    text ("a disappointment", 505, 380);
+    
+    if (mouseX > 500 && mouseX < 700 && mouseY > 345 && mouseY < 395){
+      fill(255,0,0);
+      rect (500, 345, 200, 50, 10);
+      textSize(20); fill(0);
+      text ("You've always been", 505, 365);
+      text ("a disappointment", 505, 380);
+    
+      if (mousePressed){
+        gamestate = 0;
+        My = 200;
+    }
+    }}
+}
+
+void mousePressed(){
+  Vy = - 17;
+ }
+
+</script>
+<canvas id="sketch" style="border: 1px solid black;"></canvas>
+</body>
+</html>
